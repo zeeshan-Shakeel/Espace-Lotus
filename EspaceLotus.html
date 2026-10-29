@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espace Lotus — Maison de Massages & Soins Holistiques</title>
+<meta name="description" content="Espace Lotus, maison de massages et soins holistiques. Réservez un soin d'exception. (Site de démonstration)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F7F4ED;--sand:#E7DED0;--forest:#263D32;--sage:#A7B09A;--charcoal:#292923;--gold:#B69A69;
+  --gold-text:#7C6537;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fs-h1:clamp(2.9rem,7.2vw,6.6rem);--fs-h2:clamp(2rem,4.2vw,3.6rem);--fs-h3:clamp(1.7rem,2.6vw,2.4rem);
+  --s1:.5rem;--s2:1rem;--s3:1.75rem;--s4:3rem;--s5:clamp(4rem,9vw,8rem);
+  --ease:cubic-bezier(.2,.6,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{margin:0;background:var(--ivory);color:var(--charcoal);font:400 1.0625rem/1.7 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.02;margin:0;color:var(--forest);letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+.wrap{width:min(100% - 2.5rem,1320px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.skip{position:absolute;left:1rem;top:-4rem;background:var(--forest);color:var(--ivory);padding:.6rem 1rem;z-index:100}
+.skip:focus{top:1rem}
+.label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.8rem 1.8rem;font:500 .78rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--forest);transition:background .35s var(--ease),color .35s var(--ease),border-color .35s}
+.btn-solid{background:var(--forest);color:var(--ivory)}
+.btn-solid:hover{background:var(--charcoal);border-color:var(--charcoal)}
+.btn-line{color:var(--forest)}
+.btn-line:hover{background:var(--forest);color:var(--ivory)}
+.btn:active{transform:translateY(1px)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.96);border-bottom:1px solid var(--sand)}
+.header-in{display:flex;align-items:center;justify-content:space-between;min-height:4.5rem;gap:1rem}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-family:var(--serif);font-size:1.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest)}
+.logo-sub{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-text);margin-top:.2rem}
+.nav{display:flex;align-items:center;gap:2.5rem}
+.nav ul{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
+.nav ul a{font-size:.85rem;letter-spacing:.08em;text-decoration:none;position:relative;padding:.4rem 0}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav ul a:hover::after{transform:scaleX(1)}
+.nav .btn{min-height:42px;padding:.6rem 1.3rem}
+.menu-btn{display:none;width:48px;height:48px;background:none;border:1px solid var(--sand);cursor:pointer;position:relative}
+.menu-btn span{position:absolute;left:13px;right:13px;height:1px;background:var(--forest);transition:transform .3s var(--ease)}
+.menu-btn span:first-child{top:21px}.menu-btn span:last-child{top:27px}
+.menu-btn[aria-expanded="true"] span:first-child{transform:translateY(3px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:last-child{transform:translateY(-3px) rotate(-45deg)}
+
+/* Image placeholder fallback */
+.ph{margin:0;background:linear-gradient(160deg,var(--sand),var(--sage));overflow:hidden;position:relative}
+.ph .art{position:absolute;inset:0;width:100%;height:100%}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+
+/* Hero */
+.hero{padding:clamp(2rem,5vw,4rem) 0 var(--s5)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(1.5rem,4vw,5rem);align-items:end;position:relative}
+.hero-text{padding-bottom:clamp(0rem,3vw,3rem)}
+.hero h1{font-size:var(--fs-h1);margin:var(--s3) 0;max-width:11ch;text-wrap:balance}
+.lead{max-width:34rem;font-size:1.15rem;color:#4a4a42}
+.cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:var(--s4)}
+.hero-fig{aspect-ratio:4/5;max-height:78vh;margin-left:auto;width:100%;border-top-left-radius:50% 28%;border-top-right-radius:50% 28%}
+.hero-fig figcaption{position:absolute;left:0;right:0;bottom:0;padding:.9rem 1.2rem;background:var(--ivory);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.hero-fig figcaption span{color:var(--gold-text)}
+.hero-seal{position:absolute;left:-.3rem;bottom:-3.2rem;font-family:var(--serif);font-style:italic;font-size:clamp(4rem,12vw,11rem);line-height:1;color:var(--sand);z-index:-1;pointer-events:none}
+
+/* Treatments: asymmetric editorial rows */
+.soins{background:var(--sand);padding:var(--s5) 0}
+.section-head{max-width:46rem;margin-bottom:var(--s5)}
+.section-head h2{font-size:var(--fs-h2);margin-bottom:var(--s2)}
+.section-head p{font-size:1.15rem}
+.soin{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s3);align-items:center;padding:var(--s4) 0;border-top:1px solid var(--gold)}
+.soin .ph{grid-row:1}
+.soin-a .ph{grid-column:1/8;aspect-ratio:4/3}.soin-a .soin-body{grid-column:9/13}
+.soin-b .ph{grid-column:7/11;aspect-ratio:4/5;grid-row:1}.soin-b .soin-body{grid-column:2/6;grid-row:1}
+.soin-c .ph{grid-column:2/9;aspect-ratio:4/3}.soin-c .soin-body{grid-column:9/13}
+.soin:hover .ph img{transform:scale(1.04)}
+.soin h3{font-size:var(--fs-h3);margin-bottom:var(--s2)}
+.meta{display:flex;align-items:baseline;justify-content:space-between;border-block:1px solid rgba(38,61,50,.25);padding:.7rem 0;margin-bottom:var(--s2);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.meta strong{font:500 1.9rem/1 var(--serif);letter-spacing:0;color:var(--forest)}
+.soin-body>p:not(.meta){margin-bottom:var(--s3)}
+.demo{margin-top:var(--s3);padding:1rem 1.25rem;border:1px dashed var(--forest);background:var(--ivory)}
+
+/* Maison */
+.maison{padding:var(--s5) 0;background:var(--forest);color:var(--ivory)}
+.maison-in{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s3)}
+.maison h2{grid-column:1/8;color:var(--ivory);font-size:var(--fs-h2)}
+.maison p{grid-column:8/13;align-self:end;color:var(--sand)}
+
+/* Avis */
+.avis{padding:var(--s5) 0}
+.avis-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,6vw,6rem);align-items:start}
+.avis h2{font-size:var(--fs-h2)}
+.quote{margin:0;padding-left:var(--s4);border-left:1px solid var(--gold)}
+blockquote{margin:0}
+blockquote p{font:400 clamp(1.5rem,2.4vw,2.1rem)/1.35 var(--serif);color:var(--forest)}
+.quote figcaption{margin-top:var(--s3);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.rating{margin-top:var(--s2);display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap}
+.rating-n{font:500 1.6rem/1 var(--serif);color:var(--forest)}
+.rating small{font-size:.8rem;color:#55554b;max-width:22rem}
+
+.site-footer{background:var(--charcoal);color:var(--sand);padding:var(--s4) 0}
+.foot-in{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center;justify-content:space-between}
+.site-footer .logo-name{color:var(--ivory)}
+.site-footer .btn-solid{background:var(--ivory);color:var(--forest);border-color:var(--ivory)}
+.site-footer small{width:100%;opacity:.7}
+
+/* Motion: single gentle load sequence + reveal. Content visible without JS. */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-text>*{animation:rise 1s var(--ease) both}
+.hero-text>:nth-child(2){animation-delay:.12s}.hero-text>:nth-child(3){animation-delay:.24s}.hero-text>:nth-child(4){animation-delay:.36s}
+
+/* Tablet */
+@media (max-width:1023px){
+  .menu-btn{display:block}
+  .nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:1.5rem;padding:1.5rem 1.25rem 2rem;background:var(--ivory);border-bottom:1px solid var(--sand);display:none}
+  .nav.open{display:flex}
+  .nav ul{flex-direction:column;gap:.25rem}
+  .nav ul a{display:block;padding:.8rem 0;font-size:1.05rem}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-fig{max-height:none;aspect-ratio:4/3;border-top-left-radius:50% 22%;border-top-right-radius:50% 22%;order:2}
+  .hero-seal{display:none}
+  .soin{grid-template-columns:1fr;gap:var(--s2)}
+  .soin .ph,.soin .soin-body{grid-column:1 !important;grid-row:auto !important}
+  .soin-b .ph{aspect-ratio:4/3}
+  .maison h2,.maison p{grid-column:1/13}
+  .avis-grid{grid-template-columns:1fr}
+}
+/* Mobile */
+@media (max-width:600px){
+  body{font-size:1rem}
+  .logo-name{font-size:1.3rem}.logo-sub{font-size:.52rem;letter-spacing:.18em}
+  .cta-row .btn{width:100%}
+  .hero-fig{aspect-ratio:4/5}
+  .quote{padding-left:var(--s2)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .reveal{opacity:1;transform:none}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-in">
+    <a class="logo" href="#top" aria-label="Espace Lotus, accueil">
+      <span class="logo-name">Espace Lotus</span>
+      <span class="logo-sub">Massages · Soins · Rituels</span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+    <nav id="nav" class="nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#top">Accueil</a></li>
+        <li><a href="#soins">Nos soins</a></li>
+        <li><a href="#maison">La maison</a></li>
+        <li><a href="#avis">Avis</a></li>
+      </ul>
+      <a class="btn btn-solid" href="#soins">Réserver un soin</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="label">L'art du bien-être</p>
+      <h1>Reconnectez-vous <br>à l'essentiel.</h1>
+      <p class="lead">Des soins d'exception, des gestes experts et une parenthèse de douceur pour retrouver l'équilibre du corps et de l'esprit.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#soins">Réserver un soin</a>
+        <a class="btn btn-line" href="#soins">Découvrir nos rituels</a>
+      </div>
+    </div>
+    <figure class="hero-fig ph" role="img" aria-label="Illustration d'un lotus">
+      <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="#A7B09A"/><circle cx="200" cy="190" r="110" fill="#E7DED0"/><ellipse cx="200" cy="300" rx="34" ry="120" fill="#263D32" opacity="0.25" transform="rotate(-60 200 380)"/><ellipse cx="200" cy="300" rx="34" ry="120" fill="#263D32" opacity="0.4" transform="rotate(-35 200 380)"/><ellipse cx="200" cy="300" rx="34" ry="120" fill="#263D32" opacity="0.6" transform="rotate(-12 200 380)"/><ellipse cx="200" cy="300" rx="34" ry="120" fill="#263D32" opacity="0.6" transform="rotate(12 200 380)"/><ellipse cx="200" cy="300" rx="34" ry="120" fill="#263D32" opacity="0.4" transform="rotate(35 200 380)"/><ellipse cx="200" cy="300" rx="34" ry="120" fill="#263D32" opacity="0.25" transform="rotate(60 200 380)"/><ellipse cx="200" cy="300" rx="30" ry="115" fill="#263D32"/><path d="M40 420 Q120 400 200 420 T360 420" stroke="#B69A69" fill="none" stroke-width="1.5"/></svg>
+      <figcaption>Maison de soins — Paris <span>Sur rendez-vous</span></figcaption>
+    </figure>
+    <span class="hero-seal" aria-hidden="true">Lotus</span>
+  </div>
+</section>
+
+<section class="soins" id="soins">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>Le soin, comme un art de vivre.</h2>
+      <p>Des rituels imaginés pour ralentir, se ressourcer et retrouver une harmonie profonde.</p>
+    </header>
+
+    <article class="soin soin-a reveal">
+      <figure class="ph"><svg class="art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="#F7F4ED"/><circle cx="300" cy="120" r="70" fill="#E7DED0"/><ellipse cx="200" cy="330" rx="110" ry="30" fill="#263D32"/><ellipse cx="200" cy="285" rx="82" ry="24" fill="#3a5646"/><ellipse cx="200" cy="248" rx="54" ry="18" fill="#A7B09A"/><ellipse cx="200" cy="222" rx="30" ry="12" fill="#B69A69"/><path d="M0 380 H400" stroke="#B69A69" stroke-width="1"/></svg></figure>
+      <div class="soin-body">
+        <h3>Massage Signature</h3>
+        <p class="meta"><span>60 minutes</span><strong>85 €</strong></p>
+        <p>Un massage enveloppant aux gestes précis pour relâcher les tensions et retrouver une profonde sensation de légèreté.</p>
+        <a class="btn btn-line" href="#reservation-demo" data-soin="Massage Signature">Réserver ce soin</a>
+      </div>
+    </article>
+
+    <article class="soin soin-b reveal">
+      <figure class="ph"><svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="#E7DED0"/><circle cx="200" cy="250" r="40" fill="none" stroke="#B69A69" stroke-width="1.2" opacity="1"/><circle cx="200" cy="250" r="80" fill="none" stroke="#B69A69" stroke-width="1.2" opacity="0.8"/><circle cx="200" cy="250" r="120" fill="none" stroke="#B69A69" stroke-width="1.2" opacity="0.6"/><circle cx="200" cy="250" r="160" fill="none" stroke="#B69A69" stroke-width="1.2" opacity="0.4"/><circle cx="200" cy="250" r="200" fill="none" stroke="#B69A69" stroke-width="1.2" opacity="0.25"/><circle cx="200" cy="250" r="24" fill="#263D32"/></svg></figure>
+      <div class="soin-body">
+        <h3>Soin Visage Éclat</h3>
+        <p class="meta"><span>45 minutes</span><strong>65 €</strong></p>
+        <p>Un rituel délicat qui révèle l'éclat naturel de la peau et offre au visage une véritable parenthèse de fraîcheur.</p>
+        <a class="btn btn-line" href="#reservation-demo" data-soin="Soin Visage Éclat">Réserver ce soin</a>
+      </div>
+    </article>
+
+    <article class="soin soin-c reveal">
+      <figure class="ph"><svg class="art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="#263D32"/><path d="M0 120 Q100 80 200 120 T400 120" fill="none" stroke="#B69A69" stroke-width="2"/><path d="M0 160 Q100 120 200 160 T400 160" fill="none" stroke="#A7B09A" stroke-width="2"/><path d="M0 200 Q100 160 200 200 T400 200" fill="none" stroke="#F7F4ED" stroke-width="2"/><path d="M0 240 Q100 200 200 240 T400 240" fill="none" stroke="#A7B09A" stroke-width="2"/><path d="M0 280 Q100 240 200 280 T400 280" fill="none" stroke="#B69A69" stroke-width="2"/><circle cx="300" cy="70" r="40" fill="#F7F4ED" opacity=".7"/></svg></figure>
+      <div class="soin-body">
+        <h3>Rituel Spa &amp; Relaxation</h3>
+        <p class="meta"><span>90 minutes</span><strong>120 €</strong></p>
+        <p>Une expérience immersive associant détente profonde et gestes harmonieux pour s'accorder un moment hors du temps.</p>
+        <a class="btn btn-line" href="#reservation-demo" data-soin="Rituel Spa & Relaxation">Réserver ce soin</a>
+      </div>
+    </article>
+
+    <div class="demo" id="reservation-demo" role="status" aria-live="polite" hidden>
+      <p><strong>Démonstration.</strong> <span id="demo-soin"></span> Aucun système de réservation n'est connecté à ce site fictif.</p>
+    </div>
+  </div>
+</section>
+
+<section class="maison" id="maison">
+  <div class="wrap maison-in">
+    <h2>Une maison, un rythme plus lent.</h2>
+    <p>Espace Lotus est une maison fictive imaginée pour cette démonstration : un lieu où chaque détail, de la lumière aux matières, invite à ralentir.</p>
+  </div>
+</section>
+
+<section class="avis" id="avis">
+  <div class="wrap avis-grid">
+    <h2>Le bien-être se ressent. Il se partage.</h2>
+    <figure class="quote reveal">
+      <blockquote><p>Un lieu apaisant, des gestes d'une grande justesse et une attention sincère. Je suis ressortie profondément détendue, comme après une vraie pause dans le temps.</p></blockquote>
+      <figcaption>Claire M. — Cliente</figcaption>
+      <p class="rating"><span class="rating-n">4,9/5</span> <small>Exemple illustratif — contenu de démonstration, pas une note vérifiée.</small></p>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-in">
+    <span class="logo-name">Espace Lotus</span>
+    <a class="btn btn-solid" href="#soins">Réserver un soin</a>
+    <small>Site fictif de démonstration.</small>
+  </div>
+</footer>
+<script>
+(function () {
+  'use strict';
+  document.documentElement.classList.add('js');
+
+  // Mobile menu
+  var btn = document.querySelector('.menu-btn');
+  var nav = document.getElementById('nav');
+  function setMenu(open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    nav.classList.toggle('open', open);
+  }
+  btn.addEventListener('click', function () {
+    setMenu(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); btn.focus(); }
+  });
+  window.matchMedia('(min-width:1024px)').addEventListener('change', function () { setMenu(false); });
+
+  // Reveal on scroll (fails open)
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Image fallback: hide broken images so the gradient placeholder shows
+  document.querySelectorAll('.ph img').forEach(function (img) {
+    img.addEventListener('error', function () { img.style.display = 'none'; });
+  });
+
+  // Demo booking behaviour
+  var demo = document.getElementById('reservation-demo');
+  var label = document.getElementById('demo-soin');
+  document.querySelectorAll('[data-soin]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      label.textContent = 'Vous avez choisi « ' + a.dataset.soin + ' ».';
+      demo.hidden = false;
+      demo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
